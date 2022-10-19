@@ -1,0 +1,45 @@
+.image_container{
+    display:flex;
+    height:32px;
+}
+
+.button_container{
+    margin-top: 5px;
+    margin-bottom:5px;
+}
+
+.field{
+    height:30px;
+    width:30px;
+    border:1px solid black;
+}
+
+.row{
+    height:32px;
+    display:flex;
+}
+
+.skocko{
+    background-image: url("./images/skocko.jpg");
+    background-size: 100%;
+}
+.pik{
+    background-image: url("./images/pik.jpg");
+    background-size: 100%;
+}
+.karo{
+    background-image: url("./images/karo.jpg");
+    background-size: 100%;
+}
+.tref{
+    background-image: url("./images/tref.jpg");
+    background-size: 100%;
+}
+.srce{
+    background-image: url("./images/srce.jpg");
+    background-size: 100%;
+}
+.zvezda{
+    background-image: url("./images/zvezda.jpg");
+    background-size: 100%;
+}
