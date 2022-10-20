@@ -54,15 +54,25 @@ class myjumpyclass{
 
     //visual change of symbols
     mark_symbol(id){
+        var row=parseInt(this.divide_string(id,'_')[0])
         document.getElementById(id).style.borderWidth='2px';
         document.getElementById(id).style.borderColor='red';
+        //compensation for the boder change so that solution fields do not move
+        if (!isNaN(row)){
+        document.getElementById(row+'empty').style.width='28px'
+        }
     }
     demark_symbol(id){
+        var row=parseInt(this.divide_string(id,'_')[0])
         document.getElementById(id).style.borderWidth='1px';
         document.getElementById(id).style.borderColor='black';
+        //compensation for the boder change so that solution fields do not move
+        if (!isNaN(row)){
+            document.getElementById(row+'empty').style.width='30px'
+        }
     }
 
-    //to extract test combination from class names
+    //to extract test combination from class names and row number from id
     divide_string(string,sep){
         var index_start=[];
         var index_end=[];
@@ -80,6 +90,10 @@ class myjumpyclass{
         }
         return words
     }
+    //to put alert to sleep
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+     }
 
     //MAIN 
     main_method(className){
@@ -89,19 +103,28 @@ class myjumpyclass{
         this.add_interactivity(element)//now we can click on the fields in the attempts
         this.current_column++
         if (!(this.current_column % this.max_column)){
-            this.current_column=this.current_column % this.max_column
             let result=this.check_solution()
+            this.show_solution(result[0], result[1])
             if (result[0]==4){
-                if (!alert('You got it right!')){window.location.reload()}
+                //putting alert to sleep
+                this.sleep(200).then(() => {
+                    if (!alert('You got it right!')){window.location.reload()}//there is an issue with alert in current version of firefox
+                    })
+                
             }else{
+            this.current_column=this.current_column % this.max_column
             this.current_row++
             this.generate_fields_per_row()
-            if (this.current_row==this.max_row){
-                this.show_final_solution();
-                if (!alert('You have run out of attempts!')){window.location.reload()}
+                if (this.current_row==this.max_row){
+                    this.show_final_solution();
+                    //putting alert to sleep
+                    this.sleep(200).then(() => {
+                        if (!alert('You have run out of attempts!')){window.location.reload()}//there is an issue with alert in current version of firefox
+                        })
+                    
+                }
             }
             this.test=[]
-            }
         }
     }
 
@@ -157,30 +180,30 @@ class myjumpyclass{
                 } 
             }
         }
-        this.show_solution(exact, notexact)
         return [exact, notexact]
     }
 
 
     generate_fields_per_row(){
-        let div = document.createElement("div");
+        var div = document.createElement("div");
         div.className = 'row';
         div.id=this.current_row;
         document.getElementById('attempts').appendChild(div);
         for (var ii=0;ii<this.max_column;ii++){
-            let div = document.createElement("div");
+            div = document.createElement("div");
             div.className = 'field';
             div.id=this.current_row+'_'+ii;
             document.getElementById(this.current_row).appendChild(div);
         }
-    }
-
-    generate_solution_fields(){
-        let div = document.createElement("div");
+        //generates empty space after attempt fields empty space is used to compensate for the border change and to give better look
+        div = document.createElement("div");
         div.className = 'field';
-        //div.id=this.current_row+'empty'
+        div.id=this.current_row+'empty'
         div.style.borderColor='white';
         document.getElementById(this.current_row).appendChild(div);
+    }
+    //this comes after empty field
+    generate_solution_fields(){
         for (var ii=0;ii<this.max_column;ii++){
             let div = document.createElement("div");
             div.className = 'field';
