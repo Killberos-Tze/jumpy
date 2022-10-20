@@ -1,6 +1,6 @@
 .image_container{
     display:flex;
-    height:32px;
+    height:30px;
 }
 
 .button_container{
@@ -9,6 +9,7 @@
 }
 
 .field{
+    box-sizing: border-box;
     height:30px;
     width:30px;
     border:1px solid black;

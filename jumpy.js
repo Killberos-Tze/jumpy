@@ -54,22 +54,22 @@ class myjumpyclass{
 
     //visual change of symbols
     mark_symbol(id){
-        var row=parseInt(this.divide_string(id,'_')[0])
+        //var row=parseInt(this.divide_string(id,'_')[0])
         document.getElementById(id).style.borderWidth='2px';
         document.getElementById(id).style.borderColor='red';
         //compensation for the boder change so that solution fields do not move
-        if (!isNaN(row)){
-        document.getElementById(row+'empty').style.width='28px'
-        }
+        //if (!isNaN(row)){
+        //document.getElementById(row+'empty').style.width='28px'
+        //}
     }
     demark_symbol(id){
-        var row=parseInt(this.divide_string(id,'_')[0])
+        //var row=parseInt(this.divide_string(id,'_')[0])
         document.getElementById(id).style.borderWidth='1px';
         document.getElementById(id).style.borderColor='black';
         //compensation for the boder change so that solution fields do not move
-        if (!isNaN(row)){
-            document.getElementById(row+'empty').style.width='30px'
-        }
+        //if (!isNaN(row)){
+        //    document.getElementById(row+'empty').style.width='30px'
+        //}
     }
 
     //to extract test combination from class names and row number from id
