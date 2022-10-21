@@ -36,7 +36,7 @@ class myjumpyclass{
         }
         //console.log(this.solution)
     }
-
+    //this is here because user shouldn't be able to interact with elements before he clicks new game
     add_interactivity(element){
         element.style.cursor='pointer';//changes cursors
         element.setAttribute("onclick", "window.myglobal_a.main_method(className)")//adds command
